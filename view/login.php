@@ -34,5 +34,6 @@
 <?php
 include("../config/global_script.php");
 ?>
+<script src="service/login.js"></script>
 
 </html>

@@ -1,3 +1,6 @@
+<?php
+include('../config/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,11 +41,7 @@
                             <table id="tblDatos">
                                 <thead>
                                     <th>#</th>
-                                    <th>Código</th>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Telefono</th>
-                                    <th>Email</th>
                                     <th>Usuario</th>
                                     <th>Tipo</th>
                                     <th>Acciones</th>
@@ -77,6 +76,6 @@ if (isset($_GET['exito']) && $_GET['exito'] === '1' && isset($_GET['msg'])) {
 }
 
 ?>
-
+<script src="service/user.js"></script>
 
 </html>

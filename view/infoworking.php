@@ -1,3 +1,6 @@
+<?php
+include('../config/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,9 +36,10 @@
                             </div>
 
                             <div class="content-btn">
-                                <a class="fa-solid fa-plus" title="Agregar" id="btn-add-insercion"></a>
+                                <a class="fa-solid fa-plus" title="Agregar" id="btn-add-insercion" onclick="ShowModal('btn-add-insercion',<?php echo $_GET['id'] ?>)"></a>
                             </div>
                         </div>
+                        <input type="hidden" id="id" value="<?php echo $_GET['id'] ?>">
                         <div class="content-info-table">
                             <table id="tblDatos">
                                 <thead>
@@ -48,7 +52,7 @@
                                     <th>Horas / Dia</th>
                                     <th>Acciones</th>
                                 </thead>
-                                <tbody id="tblbodylista">
+                                <tbody id="tblbodylista_practica">
 
                                 </tbody>
                             </table>
@@ -63,7 +67,7 @@
                             </div>
 
                             <div class="content-btn">
-                                <a class="fa-solid fa-plus" title="Agregar" id="btn-add-laboral"></a>
+                                <a class="fa-solid fa-plus" title="Agregar" id="btn-add-laboral" onclick="ShowModal('btn-add-laboral', <?php echo $_GET['id'] ?>)"></a>
                             </div>
                         </div>
                         <div class="content-info-table">
@@ -78,7 +82,7 @@
                                     <th>Ingreso Mensual</th>
                                     <th>Acciones</th>
                                 </thead>
-                                <tbody id="tblbodylista">
+                                <tbody id="tblbodylista_empleo">
 
                                 </tbody>
                             </table>
@@ -91,14 +95,15 @@
                                 <a class="fa-solid fa-xmark btn-close-model" onclick="CloseModal()"></a>
                             </div>
                             <div class="cont-modal">
-                                <form id="formulario-modal-insercion" class="formulario">
+                                <form id="formulario_insercion" class="formulario">
+                                    <input type="hidden" name="idegresado_insercion" id="idegresado_insercion">
                                     <div class="content-input-modal">
                                         <div class="form-input">
                                             <div class="formulario-grupo formulario-grupo-full grupo-action" id="grupo-modulo">
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-select">
                                                         <i class="fa-solid fa-list"></i>
-                                                        <select name="idmodulo-insercion" class="select-option input-form" id="idmodulo-insercion">
+                                                        <select name="idmodulo_insercion" class="select-option input-form" id="idmodulo_insercion">
                                                             <option value="" disabled selected></option>
                                                             <option value="1">MODULO I</option>
                                                             <option value="2">MODULO II</option>
@@ -112,25 +117,25 @@
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-action">
                                                         <i class="fa-solid fa-industry"></i>
-                                                        <input type="text" name="ruc-insercion" id="ruc-insercion" class="input-form">
+                                                        <input type="text" name="ruc_insercion" id="ruc_insercion" class="input-form">
                                                         <label class="input-label" for="">RUC *</label>
                                                     </div>
                                                     <div class="btn-action">
-                                                        <button type="button" id="buscarbyruc-insercion" class="fa-solid fa-magnifying-glass label-search" title="Buscar..." onclick="SearchByRuc('ruc-insercion','empresa-insercion')"></button>
+                                                        <button type="button" id="buscarbyruc_insercion" class="fa-solid fa-magnifying-glass label-search" title="Buscar..." onclick="SearchByRuc('ruc_insercion','empresa_insercion')"></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-empresa">
                                                 <div class="input-content">
                                                     <i class="fa-regular fa-building"></i>
-                                                    <input type="text" name="empresa-insercion" id="empresa-insercion" class="input-form">
+                                                    <input type="text" name="empresa_insercion" id="empresa_insercion" class="input-form">
                                                     <label class="input-label" for="">Empresa *</label>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-cargo">
                                                 <div class="input-content">
                                                     <i class="fa-solid fa-user-tie"></i>
-                                                    <input type="text" name="cargo-insercion" id="cargo-insercion" class="input-form">
+                                                    <input type="text" name="cargo_insercion" id="cargo_insercion" class="input-form">
                                                     <label class="input-label" for="">Cargo *</label>
                                                 </div>
                                             </div>
@@ -138,14 +143,14 @@
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-select">
                                                         <i class="fa-regular fa-paper-plane"></i>
-                                                        <select name="medio-insercion" class="select-option input-form" id="medio-insercion">
+                                                        <select name="idmedio_insercion" class="select-option input-form" id="idmedio_insercion">
                                                             <option value="" disabled selected></option>
-                                                            <option value="BOLSA LABORAL DEL INSTITUTO">BOLSA LABORAL DEL INSTITUTO</option>
-                                                            <option value="REDES SOCIALES">REDES SOCIALES</option>
-                                                            <option value="OFERTAS LABORALES">OFERTAS LABORALES</option>
-                                                            <option value="CONTACTO CON AMIGOS Y/O FAMILIARES">CONTACTO CON AMIGOS Y/O FAMILIARES</option>
-                                                            <option value="CONTACTO CON OTRO EGRESADO O DOCENTE DEL INSTITUTO">CONTACTO CON OTRO EGRESADO O DOCENTE DEL INSTITUTO</option>
-                                                            <option value="OTRO">OTRO</option>
+                                                            <option value="1">BOLSA LABORAL DEL INSTITUTO</option>
+                                                            <option value="2">REDES SOCIALES</option>
+                                                            <option value="3">OFERTAS LABORALES</option>
+                                                            <option value="4">CONTACTO CON AMIGOS Y/O FAMILIARES</option>
+                                                            <option value="5">CONTACTO CON OTRO EGRESADO O DOCENTE DEL INSTITUTO</option>
+                                                            <option value="6">OTRO</option>
                                                         </select>
                                                         <label class="input-label" for="">Medio informativo *</label>
                                                     </div>
@@ -154,21 +159,21 @@
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-fechainicio">
                                                 <div class="input-content input-datetime">
                                                     <i class="fa-solid fa-calendar-days"></i>
-                                                    <input type="date" class="input-form-date" name="fechainicio-insercion" id="fechainicio-insercion">
+                                                    <input type="date" class="input-form-date" name="fechainicio_insercion" id="fechainicio_insercion">
                                                     <label class="input-label input-label-date" for="">Fecha Inicio *</label>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-fechafin">
                                                 <div class="input-content input-datetime">
                                                     <i class="fa-solid fa-calendar-days"></i>
-                                                    <input type="date" class="input-form-date" name="fechafin-insercion" id="fechafin-insercion">
+                                                    <input type="date" class="input-form-date" name="fechafin_insercion" id="fechafin_insercion">
                                                     <label class="input-label input-label-date" for="">Fecha Fin *</label>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-horas">
                                                 <div class="input-content">
                                                     <i class="fa-solid fa-hourglass"></i>
-                                                    <input type="number" name="horas-insercion" id="horas-insercion" class="input-form">
+                                                    <input type="number" name="horas_insercion" id="horas_insercion" class="input-form">
                                                     <label class="input-label" for="">Horas por dia *</label>
                                                 </div>
                                             </div>
@@ -189,32 +194,33 @@
                                 <a class="fa-solid fa-xmark btn-close-model" onclick="CloseModal()"></a>
                             </div>
                             <div class="cont-modal">
-                                <form id="formulario-modal-laboral" class="formulario">
+                                <form id="formulario_laboral" class="formulario">
+                                    <input type="hidden" name="idegresado_laboral" id="idegresado_laboral">
                                     <div class="content-input-modal">
                                         <div class="form-input">
                                             <div class="formulario-grupo formulario-grupo-full grupo-action" id="grupo-ruc">
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-action">
                                                         <i class="fa-solid fa-industry"></i>
-                                                        <input type="text" name="ruc-laboral" id="ruc-laboral" class="input-form">
+                                                        <input type="text" name="ruc_laboral" id="ruc_laboral" class="input-form">
                                                         <label class="input-label" for="">RUC *</label>
                                                     </div>
                                                     <div class="btn-action">
-                                                        <button type="button" id="buscarbyruc-laboral" class="fa-solid fa-magnifying-glass label-search" title="Buscar..." onclick="SearchByRuc('ruc-laboral','empresa-laboral')"></button>
+                                                        <button type="button" id="buscarbyruc_laboral" class="fa-solid fa-magnifying-glass label-search" title="Buscar..." onclick="SearchByRuc('ruc_laboral','empresa_laboral')"></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-empresa">
                                                 <div class="input-content">
                                                     <i class="fa-regular fa-building"></i>
-                                                    <input type="text" name="empresa-laboral" id="empresa-laboral" class="input-form">
+                                                    <input type="text" name="empresa_laboral" id="empresa_laboral" class="input-form">
                                                     <label class="input-label" for="">Empresa *</label>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-cargo">
                                                 <div class="input-content">
                                                     <i class="fa-solid fa-user-tie"></i>
-                                                    <input type="text" name="cargo-laboral" id="cargo-laboral" class="input-form">
+                                                    <input type="text" name="cargo_laboral" id="cargo_laboral" class="input-form">
                                                     <label class="input-label" for="">Cargo *</label>
                                                 </div>
                                             </div>
@@ -222,14 +228,14 @@
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-select">
                                                         <i class="fa-solid fa-building-user"></i>
-                                                        <select name="condicion-laboral" class="select-option input-form" id="condicion-laboral">
+                                                        <select name="idcondicion_laboral" class="select-option input-form" id="idcondicion_laboral">
                                                             <option value="" disabled selected></option>
-                                                            <option value="NOMBRADO"> NOMBRADO</option>
-                                                            <option value="CONTRATO INDEFINIDO, PERMANENTE">CONTRATO INDEFINIDO, PERMANENTE</option>
-                                                            <option value="CONTRATO A PLAZO FIJO">CONTRATO A PLAZO FIJO</option>
-                                                            <option value="CONTRATO POR LOCACIÓN DE SERVICIOS">CONTRATO POR LOCACIÓN DE SERVICIOS</option>
-                                                            <option value="SIN CONTRATO">SIN CONTRATO</option>
-                                                            <option value="OTRO">OTRO</option>
+                                                            <option value="1"> NOMBRADO</option>
+                                                            <option value="2">CONTRATO INDEFINIDO, PERMANENTE</option>
+                                                            <option value="3">CONTRATO A PLAZO FIJO</option>
+                                                            <option value="4">CONTRATO POR LOCACIÓN DE SERVICIOS</option>
+                                                            <option value="5">SIN CONTRATO</option>
+                                                            <option value="6">OTRO</option>
                                                         </select>
                                                         <label class="input-label" for="">Condición laboral *</label>
                                                     </div>
@@ -239,14 +245,14 @@
                                                 <div class="grupo-input-action">
                                                     <div class="input-content input-select">
                                                         <i class="fa-solid fa-building-user"></i>
-                                                        <select name="ingreso-laboral" class="select-option input-form" id="ingreso-laboral">
+                                                        <select name="idingreso_laboral" class="select-option input-form" id="idingreso_laboral">
                                                             <option value="" disabled selected></option>
-                                                            <option value="MENOS SUELDO BASICO">MENOS SUELDO BASICO</option>
-                                                            <option value="SUELDO BÁSICO">SUELDO BÁSICO</option>
-                                                            <option value="DE S/. 1001 A S/. 1500 SOLES">DE S/. 1001 A S/. 1500 SOLES</option>
-                                                            <option value="DE S/. 1501 A S/. 2000 SOLES">DE S/. 1501 A S/. 2000 SOLES</option>
-                                                            <option value="DE S/. 2001 A S/. 2500 SOLES">DE S/. 2001 A S/. 2500 SOLES</option>
-                                                            <option value="DE S/. 2501 A MAS">DE S/. 2501 A MAS</option>
+                                                            <option value="1">MENOS SUELDO BASICO</option>
+                                                            <option value="2">SUELDO BÁSICO</option>
+                                                            <option value="3">DE S/. 1001 A S/. 1500</option>
+                                                            <option value="4">DE S/. 1501 A S/. 2000</option>
+                                                            <option value="5">DE S/. 2001 A S/. 2500</option>
+                                                            <option value="6">DE S/. 2501 A MAS</option>
                                                         </select>
                                                         <label class="input-label" for="">Ingreso bruto mensual *</label>
                                                     </div>
@@ -255,13 +261,13 @@
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-fechainicio">
                                                 <div class="input-content input-datetime">
                                                     <i class="fa-solid fa-calendar-days"></i>
-                                                    <input type="date" class="input-form-date" name="fechainicio-laboral" id="fechainicio-laboral">
+                                                    <input type="date" class="input-form-date" name="fechainicio_laboral" id="fechainicio_laboral">
                                                     <label class="input-label input-label-date" for="">Fecha Inicio *</label>
                                                 </div>
                                             </div>
                                             <div class="formulario-grupo-full grupo-radio" id="grupo-radio">
                                                 <div class="input-content grupo-radio-input input-content-unalinea">
-                                                    <h3>¿Ha terminado su contrato?</h3>
+                                                    <h3>¿Ha terminado su contrato? *</h3>
                                                     <input type="radio" class="input-radio input-radio_laboral" name="termino_contrato" id="termino_si" value="1">
                                                     <label class="label-radio" for="termino_si">Si</label>
                                                     <input type="radio" class="input-radio input-radio_laboral" name="termino_contrato" id="termino_no" value="2">
@@ -273,7 +279,7 @@
                                             <div class="formulario-grupo formulario-grupo-full" id="grupo-fechafin">
                                                 <div class="input-content input-datetime">
                                                     <i class="fa-solid fa-calendar-days"></i>
-                                                    <input type="date" class="input-form-date" name="fechafin-laboral" id="fechafin-laboral">
+                                                    <input type="date" class="input-form-date" name="fechafin_laboral" id="fechafin_laboral">
                                                     <label class="input-label input-label-date" for="">Fecha Fin</label>
                                                 </div>
                                             </div>

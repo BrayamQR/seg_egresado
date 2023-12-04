@@ -1,3 +1,6 @@
+<?php
+include('../config/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,20 +29,6 @@
                         <form id="formulario">
                             <div class="form-input">
                                 <input type="hidden" name="id" value="" id="id">
-                                <div class="formulario-grupo grupo-action" id="grupo-codigo">
-                                    <div class="grupo-input-action">
-                                        <div class="input-content input-action">
-                                            <i class="fa-solid fa-address-card"></i>
-                                            <input class="input-form" type="text" id="codigo" name="codigo" value="" maxlength="8">
-                                            <label class="input-label" for="">Código o DNI *</label>
-                                            <i class="formulario-validacion-estado fa-solid fa-xmark"></i>
-                                        </div>
-                                        <div class="btn-action">
-                                            <button type="button" id="buscarbydni" class="fa-solid fa-magnifying-glass label-search" title="Buscar..." onclick="SearchByDni()"></button>
-                                        </div>
-                                    </div>
-                                    <p class="formulario-input-error">El Código solo debe contener numeros (8 caracteres max.)</p>
-                                </div>
                                 <div class="formulario-grupo" id="grupo-nombre">
                                     <div class="input-content">
                                         <i class="fa-solid fa-user-pen"></i>
@@ -53,37 +42,10 @@
                                     <div class="input-content">
                                         <i class="fa-solid fa-user-pen"></i>
                                         <input class="input-form" type="text" name="apellido" value="" id="apellido">
-                                        <label class="input-label" for="">Apellidos *</label>
+                                        <label class="input-label" for="">Apellidos</label>
                                         <i class="formulario-validacion-estado fa-solid fa-xmark"></i>
                                     </div>
                                     <p class="formulario-input-error">El apellido solo debe contener letras y espacios.</p>
-                                </div>
-                                <div class="formulario-grupo" id="grupo-telefono">
-                                    <div class="input-content">
-                                        <i class="fa-solid fa-phone"></i>
-                                        <input class="input-form" type="text" name="telefono" value="" id="telefono" maxlength="9">
-                                        <label class="input-label" for="">Teléfono *</label>
-                                        <i class="formulario-validacion-estado fa-solid fa-xmark"></i>
-                                    </div>
-                                    <p class="formulario-input-error">El celular solo debe contener numeros de un 6 a 9 digitos.</p>
-                                </div>
-                                <div class="formulario-grupo" id="grupo-email">
-                                    <div class="input-content">
-                                        <i class="fa-solid fa-at"></i>
-                                        <input class="input-form" type="email" name="email" value="" id="email">
-                                        <label class="input-label" for="">Email *</label>
-                                        <i class="formulario-validacion-estado fa-solid fa-xmark"></i>
-                                    </div>
-                                    <p class="formulario-input-error">El correo no aceptado (Formato: example@example.com).</p>
-                                </div>
-                                <div class="formulario-grupo" id="grupo-direccion">
-                                    <div class="input-content">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        <input class="input-form" type="text" name="direccion" value="" id="direccion">
-                                        <label class="input-label" for="">Dirección *</label>
-                                        <i class="formulario-validacion-estado fa-solid fa-xmark"></i>
-                                    </div>
-                                    <p class="formulario-input-error">la direccion solo debe contener letras y espacios.</p>
                                 </div>
                                 <div class="formulario-grupo" id="grupo-user">
                                     <div class="input-content">
@@ -147,9 +109,11 @@
 <?php
 include("../config/global_script.php");
 ?>
+<script src="service/user.js"></script>
 <script>
     let id = "<?= isset($_GET['id']) ? $_GET['id'] : '' ?>";
     Mostrar(id);
 </script>
+
 
 </html>

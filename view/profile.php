@@ -1,3 +1,6 @@
+<?php
+include('../config/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,26 +63,9 @@
                                         <input type="hidden" name="idtipo" id="idtipo">
                                         <ul>
                                             <li class="content-profile-padre">
-                                                <input type="checkbox" name="student" id="student">
-                                                <label for="student">Estudiante</label>
-                                                <label for="student" class="profile-switch"></label>
-                                            </li>
-                                            <li class="content-profile-padre">
-                                                <input type="checkbox" name="classroom" id="classroom">
-                                                <label for="classroom">Aula</label>
-                                                <label for="classroom" class="profile-switch"></label>
-                                            </li>
-                                            <li class="content-profile-padre">
-                                                <input class="checkbox-padre" type="checkbox" name="income" id="income">
-                                                <label for="income">Asistencia</label>
-                                                <label for="income" class="profile-switch"></label>
-                                            </li>
-                                            <ul>
-                                            </ul>
-                                            <li class="content-profile-padre">
-                                                <input class="checkbox-padre" type="checkbox" name="activity" id="activity">
-                                                <label for="activity">Actividades</label>
-                                                <label for="activity" class="profile-switch"></label>
+                                                <input type="checkbox" name="graduate" id="graduate">
+                                                <label for="graduate">Egresado</label>
+                                                <label for="graduate" class="profile-switch"></label>
                                             </li>
                                             <li class="content-profile-padre">
                                                 <input class="checkbox-padre" type="checkbox" name="user" id="user">
@@ -110,5 +96,6 @@
 <?php
 include("../config/global_script.php");
 ?>
+<script src="service/profile.js"></script>
 
 </html>

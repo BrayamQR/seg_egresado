@@ -1,13 +1,14 @@
-function init(){}
-if(document.querySelector('#tblbodylista')){
-    Listar();
-}
-if(document.querySelector('#formulario')){
-    SelectImage();
-    let formulario = document.querySelector("#formulario");
-    formulario.onsubmit = function(e){
-        e.preventDefault();
-        GuardaryEditar();
+function init(){
+    if(document.querySelector('#tblbodylista')){
+        Listar();
+    }
+    if(document.querySelector('#formulario')){
+        SelectImage();
+        let formulario = document.querySelector("#formulario");
+        formulario.onsubmit = function(e){
+            e.preventDefault();
+            GuardaryEditar();
+        }
     }
 }
 async function Listar(){
@@ -21,6 +22,13 @@ async function Listar(){
             var i = 0;
             data.forEach((item) =>{
                 i++;
+                let condicion = '';
+                if(item.Id_Condicion == 1){
+                    condicion = 'EGRESADO';
+                }
+                if(item.Id_Condicion == 2){
+                    condicion = 'TITULADO';
+                }
                 let newtr = document.createElement("tr");
                 newtr.id = "row_"+item.Id_Egresado;
                 newtr.innerHTML = `<td class="opacity">${i}</td>
@@ -30,7 +38,7 @@ async function Listar(){
                                     <td data-label="Email" >${item.Email_Egresado}</td>
                                     <td data-label="Teléfono" >${item.Tel_Egresado}</td>
                                     <td data-label="Programa" >${item.Id_Programa}</td>
-                                    <td data-label="Condición" >${item.Id_Condicion}</td>
+                                    <td data-label="Condición" >${condicion}</td>
                                     <td data-label="Acciones">
                                         <div class="data-action">
                                             ${item.options}

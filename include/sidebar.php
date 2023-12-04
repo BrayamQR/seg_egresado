@@ -8,19 +8,6 @@
     <ul class="nav-list">
         <li>
             <div class="icon-link">
-                <a href="home.php">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    <span class="link-name">Inicio</span>
-                </a>
-            </div>
-            <ul class="sub-menu blank">
-                <li>
-                    <p class="submenu-name">Inicio</p>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <div class="icon-link">
                 <a href="graduate.php?rute=mgraduate">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span class="link-name">Egresados</span>
@@ -39,7 +26,7 @@
         </li>
         <li>
             <div class="icon-link">
-                <a href="#?rute=muser">
+                <a href="user.php?rute=muser">
                     <i class="fa-regular fa-circle-user"></i>
                     <span class="link-name">Usuarios</span>
                 </a>
@@ -50,14 +37,14 @@
                     <p class="submenu-name">Usuarios</p>
                 </li>
 
-                <li><a href="#?rute=auser">Agregar Usuario</a></li>
+                <li><a href="userform.php?rute=auser">Agregar Usuario</a></li>
 
-                <li><a href="#?rute=muser">Ver Usuarios</a></li>
+                <li><a href="user.php?rute=muser">Ver Usuarios</a></li>
             </ul>
         </li>
         <li>
             <div class="icon-link">
-                <a href="#?rute=mprofile">
+                <a href="profile.php?rute=mprofile">
                     <i class="fa-regular fa-id-card"></i>
                     <span class="link-name">Perfiles</span>
                 </a>
@@ -68,7 +55,7 @@
                     <p class="submenu-name">Perfiles</p>
                 </li>
 
-                <li><a href="#?rute=mprofile">Ver perfiles</a></li>
+                <li><a href="profile.php?rute=mprofile">Ver perfiles</a></li>
             </ul>
         </li>
     </ul>
@@ -78,8 +65,8 @@
                 <div class="profile-details">
                     <img src="../img/user.png" alt="">
                     <div class="name-user">
-                        <h2 class="name"></h2>
-                        <p class="position"></p>
+                        <h2 class="name"><?php echo $user_nombre; ?></h2>
+                        <p class="position"><?php echo $user_perfi; ?></p>
                     </div>
                 </div>
                 <a class='fa-solid fa-right-from-bracket btn-exit' id="log-out" href="../config/exit.php"></a>
