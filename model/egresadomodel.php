@@ -49,4 +49,11 @@ class Egresado
         mysqli_close($this->cnx);
         return $query;
     }
+    public function Buscar($dato)
+    {
+        $sql = "SELECT * FROM egresado WHERE Doc_Egresado LIKE '$dato%'  OR Cod_Egresado LIKE '$dato%' OR Nom_Egresado LIKE '$dato%' OR CONCAT(Apa_Egresado, ' ', Ama_Egresado) LIKE '$dato%'";
+        $query = mysqli_query($this->cnx, $sql);
+        mysqli_close($this->cnx);
+        return $query;
+    }
 }

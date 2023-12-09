@@ -7,7 +7,7 @@ if (isset($_GET['rute'])) {
             $tittle = 'Información del Egresado';
             break;
         case 'mgraduate':
-            $tittle = 'Mantenimiento del Esgresado';
+            $tittle = 'Mantenimiento del Egresado';
             break;
         case 'auser':
             $tittle = 'Información del Usuario';

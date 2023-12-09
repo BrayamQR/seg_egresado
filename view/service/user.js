@@ -121,7 +121,6 @@ async function GuardaryEditar(){
     } catch (error) {
         console.log(error)
     }
-
 }
 async function Mostrar(id){
     const formData = new FormData();

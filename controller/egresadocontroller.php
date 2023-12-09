@@ -106,6 +106,25 @@ class egresadoController
                     echo json_encode($arrayResponse);
                 }
                 break;
+            case 'buscar':
+                if ($_POST) {
+                    $data = array();
+                    if (empty($_POST["search_input"])) {
+                        $arrayResponse = array('status' => false, 'msg' => "Error de datos");
+                    } else {
+                        $search = trim($_POST["search_input"]);
+                        $arrayResponse = array('status' => false, 'found' => 0, 'data' => '');
+                        $rspta = $this->egresadoModel->Buscar($search);
+                        while ($obj = $rspta->fetch_object()) {
+                            array_push($data, $obj);
+                        }
+                        if (!empty($data)) {
+                            $arrayResponse = array('status' => true, 'found' => count($data), 'data' => $data);
+                        }
+                    }
+                    echo json_encode($arrayResponse);
+                }
+                break;
         }
     }
 }

@@ -10,6 +10,10 @@ function init(){
             GuardaryEditar();
         }
     }
+    if(document.querySelector('#form_search')){
+        let inputsearch = document.querySelector("#search_input");
+        inputsearch.addEventListener("keyup",InputSearch,true);
+    }
 }
 async function Listar(){
     
@@ -237,6 +241,69 @@ function SearchByDni(){
         })
     } catch (error) {
         console.log(error)
+    }
+}
+async function Buscar(){
+    let search = document.querySelector("#search_input").value;
+    if(search == ""){
+        Listar();
+    }
+    document.querySelector("#tblbodylista").innerHTML = "";
+    try {
+        let formData = new FormData();
+        formData.append('search_input',search)
+        let resp = await fetch ('../controller/egresadocontroller.php?op=buscar',{
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: formData
+        });
+        console.log(resp);
+        json = await resp.json();
+        if(json.status){
+            let data = json.data;
+            var i = 0;
+            data.forEach((item)=>{
+                i++;
+                let condicion = '';
+                if(item.Id_Condicion == 1){
+                    condicion = 'EGRESADO';
+                }
+                if(item.Id_Condicion == 2){
+                    condicion = 'TITULADO';
+                }
+                let newtr = document.createElement("tr");
+                newtr.id = "row_"+item.Id_Egresado;
+                newtr.innerHTML = `<td class="opacity">${i}</td>
+                                    <td data-label="Documento" class="rcab">${item.Doc_Egresado}</td>
+                                    <td data-label="Código">${item.Cod_Egresado}</td>
+                                    <td data-label="Nombre">${item.Nom_Egresado} ${item.Apa_Egresado} ${item.Ama_Egresado}</td>
+                                    <td data-label="Email" >${item.Email_Egresado}</td>
+                                    <td data-label="Teléfono" >${item.Tel_Egresado}</td>
+                                    <td data-label="Programa" >${item.Id_Programa}</td>
+                                    <td data-label="Condición" >${condicion}</td>
+                                    <td data-label="Acciones">
+                                        <div class="data-action">
+                                            <a href="infoworking.php?id=${item.Id_Egresado}&rute=msituation" class="fa-solid fa-eye" title="Ver situacion laboral"> </a>
+                                            <a href="graduateform.php?id=${item.Id_Egresado}'&rute=agraduate" class="fa-solid fa-tags" title="Modificar"> </a>
+                                            <a class="fa-solid fa-trash-can" onclick="Eliminar(${item.Id_Egresado})" title="Eliminar"></a>
+                                        </div>
+                                    </td>`;
+                document.querySelector("#tblbodylista").appendChild(newtr);
+            });
+        }
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+function InputSearch(){
+    let searchBus = document.querySelector("#search_input").value;
+    if(searchBus == ""){
+        Listar();
+    }
+    else{
+        Buscar();
     }
 }
 init()
